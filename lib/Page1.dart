@@ -4,49 +4,53 @@ import 'package:firebase_database/firebase_database.dart';
 import 'ExpansionList.dart';
 import 'package:flare_flutter/flare_actor.dart';
 
-class Page1 extends StatefulWidget{
+class Page1 extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _Page1();
 }
 
-class _Page1 extends State<Page1>{
+class _Page1 extends State<Page1> {
   int stateKey = 0;
   static List<Usuario> users = new List();
   String mainTitle = "Página principal";
 
-  Widget pageDirection(stateKey, BuildContext context){
-    if(stateKey == 1){
-      //EntryList list = new EntryList();
+  Widget pageDirection(stateKey, BuildContext context) {
+    if (stateKey == 1) {
+      //This class allows you to use the data from firebase
       return FirebaseAnimatedList(
           query: FirebaseDatabase.instance.reference().child("usuarios"),
           itemBuilder: (context, snapshot, animation, index) {
             return new Column(children: <Widget>[
               new ListTile(
                 title: Text(snapshot.value['nombre'].toString()),
-                onTap: (){
+                onTap: () {
                   showDialog<String>(
-                    context: context,
-                    builder: (BuildContext context) => AlertDialog(
-                      title: Text("Resultados"),
-                      content: Text(
-                          "Nombre: " + snapshot.value['nombre'] + "\nCorreo: " +
-                              snapshot.value['email'].toString()+"\nFecha: "+
-                              snapshot.value['fecha'].toString()+"\nPuntaje: "+
-                              snapshot.value['puntaje'].toString(),
-                      ),
-                      actions: <Widget>[
-                        FlatButton(
-                          child: Text("Aceptar"),
-                          onPressed: () => Navigator.pop(context, "Aceptar"),
-                        ),
-                      ],
-                    )
-                  );
+                      context: context,
+                      builder: (BuildContext context) => AlertDialog(
+                            title: Text("Resultados"),
+                            content: Text(
+                              "Nombre: " +
+                                  snapshot.value['nombre'] +
+                                  "\nCorreo: " +
+                                  snapshot.value['email'].toString() +
+                                  "\nFecha: " +
+                                  snapshot.value['fecha'].toString() +
+                                  "\nPuntaje: " +
+                                  snapshot.value['puntaje'].toString(),
+                            ),
+                            actions: <Widget>[
+                              FlatButton(
+                                child: Text("Aceptar"),
+                                onPressed: () =>
+                                    Navigator.pop(context, "Aceptar"),
+                              ),
+                            ],
+                          ));
                 },
               ),
             ]);
           });
-    }else{
+    } else {
       return new Stack(
         children: <Widget>[
           new Padding(
@@ -60,8 +64,7 @@ class _Page1 extends State<Page1>{
               style: const TextStyle(
                   fontSize: 50.0,
                   color: Colors.black,
-                  fontWeight: FontWeight.w900
-              ),
+                  fontWeight: FontWeight.w900),
             ),
           ),
         ],
@@ -78,10 +81,7 @@ class _Page1 extends State<Page1>{
         child: Text(
           "J",
           style: const TextStyle(
-              fontSize: 35.0,
-              color: Colors.black,
-              fontWeight: FontWeight.w900
-          ),
+              fontSize: 35.0, color: Colors.black, fontWeight: FontWeight.w900),
         ),
         backgroundColor: Colors.white,
       ),
@@ -92,7 +92,7 @@ class _Page1 extends State<Page1>{
         drawerHeader,
         ListTile(
           title: Text("Página principal"),
-          onTap: (){
+          onTap: () {
             setState(() {
               mainTitle = "Página principal";
               stateKey = 0;
@@ -101,7 +101,7 @@ class _Page1 extends State<Page1>{
         ),
         ListTile(
           title: Text("Estudiantes"),
-          onTap: (){
+          onTap: () {
             setState(() {
               mainTitle = "Estudiantes";
               stateKey = 1;
