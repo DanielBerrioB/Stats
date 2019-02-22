@@ -1,6 +1,3 @@
-import 'package:data_visualization/ExpansionList.dart';
-import 'package:data_visualization/ExpansionList.dart';
-import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 
 class EntryList {
@@ -26,9 +23,6 @@ class EntryList {
   }
 }
 
-/**
- * This class represents the 
- */
 class Entry {
   const Entry(this.title, [this.children = const <Entry>[]]);
   final String title;

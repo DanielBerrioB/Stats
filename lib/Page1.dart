@@ -2,7 +2,6 @@ import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'ExpansionList.dart';
-import 'package:flare_flutter/flare_actor.dart';
 
 class Page1 extends StatefulWidget {
   @override
@@ -51,21 +50,38 @@ class _Page1 extends State<Page1> {
             ]);
           });
     } else {
+      var someTextAdd = new Text(
+        "Esta aplicación permite visualizar las calificaciones de los " +
+            "estudiantes. Para acceder solo tienes que dirigirte hacia el menú y encontrarás una opcion 'Estudiantes' " +
+            "en donde aparecerá una lista con todos los estudiantes que realizaron el examen. Para visualizar la información " +
+            "solo da click en el nombre del estudiante.",
+        style: const TextStyle(
+            fontSize: 22.0, color: Colors.black, fontWeight: FontWeight.w400),
+        textAlign: TextAlign.justify,
+      );
       return new Stack(
         children: <Widget>[
+          new Container(
+            height: 100.0,
+            width: MediaQuery.of(context).size.width,
+            child: new Center(
+              child: Text(
+                "Bienvenido",
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                    fontSize: 50.0,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w900),
+              ),
+            ),
+          ),
           new Padding(
             padding: EdgeInsets.only(
-              top: 70.0,
-              left: 50.0,
+              top: 100.0,
               right: 20.0,
+              left: 20.0,
             ),
-            child: Text(
-              "Bienvenido",
-              style: const TextStyle(
-                  fontSize: 50.0,
-                  color: Colors.black,
-                  fontWeight: FontWeight.w900),
-            ),
+            child: someTextAdd,
           ),
         ],
       );
